@@ -5,6 +5,7 @@ namespace Codesleeve\AssetPipeline;
 use Illuminate\Support\Facades\App;
 use Illuminate\Routing\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class AssetPipelineController extends Controller {
 
@@ -26,7 +27,7 @@ class AssetPipelineController extends Controller {
 		} 
 
 		if (file_exists($file)) {
-			return Response::download($file);
+			return new BinaryFileResponse($file);
 		}
 
 		App::abort(404);
